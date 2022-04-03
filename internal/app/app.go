@@ -25,6 +25,7 @@ func Run(cfg *config.Config) {
 	engine := gin.New()
 	engine.Use(gin.Recovery())
 	engine.Use(middlewares.JSONAppErrorReporter())
+	engine.MaxMultipartMemory = 8 << 20 // 8 MiB
 
 	// Routers
 	handler := engine.Group("/" + cfg.Name)
@@ -37,8 +38,11 @@ func Run(cfg *config.Config) {
 	createUsersService := InitializeCreateUsersService()
 	showProfileService := InitializeShowProfileService()
 	updateProfileService := InitializeUpdateProfileService()
+	updateUserAvatarService := InitializeUpdateUserAvatarService()
 
-	userController := controller.NewUserController(createUsersService, showProfileService, updateProfileService)
+	userController := controller.NewUserController(createUsersService, showProfileService,
+		updateProfileService, updateUserAvatarService)
+
 	userController.InitRoutes(handler)
 
 	authenticateUserService := InitializeAuthenticateUserService()

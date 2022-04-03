@@ -1,6 +1,8 @@
 package interfaces
 
 import (
+	"mime/multipart"
+
 	"backend-gobarber-golang/internal/dtos"
 	"backend-gobarber-golang/internal/model"
 
@@ -31,7 +33,17 @@ type (
 
 	UserRepository interface {
 		Save(user *model.User)
+		Update(user *model.User)
 		FindByEmail(email string) *model.User
 		FindById(id string) *model.User
+	}
+
+	DiskStorageProvider interface {
+		SaveFile(file *multipart.FileHeader) string
+		DeleteFile(file string)
+	}
+
+	UpdateUserAvatarService interface {
+		Execute(id string, file *dtos.Form) (*dtos.ResponseProfileDTO, error)
 	}
 )

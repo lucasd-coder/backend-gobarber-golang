@@ -4,21 +4,24 @@ import (
 	"backend-gobarber-golang/internal/dtos"
 	"backend-gobarber-golang/internal/infra/errs"
 	"backend-gobarber-golang/internal/infra/repository"
+	"backend-gobarber-golang/internal/infra/storage"
 	"backend-gobarber-golang/internal/interfaces"
 	"backend-gobarber-golang/internal/util"
 )
 
 type UpdateUserAvatarService struct {
-	UserRepository interfaces.UserRepository
+	UserRepository      interfaces.UserRepository
+	DiskStorageProvider interfaces.DiskStorageProvider
 }
 
-func NewUpdateUserAvatarService(userRepository *repository.UserRepository) *UpdateUserAvatarService {
+func NewUpdateUserAvatarService(userRepository *repository.UserRepository, diskStorageProvider *storage.DiskStorageProvider) *UpdateUserAvatarService {
 	return &UpdateUserAvatarService{
-		UserRepository: userRepository,
+		UserRepository:      userRepository,
+		DiskStorageProvider: diskStorageProvider,
 	}
 }
 
-func (service *UpdateUserAvatarService) Execute(id, avatarFilename string) (*dtos.ResponseProfileDTO, error) {
+func (service *UpdateUserAvatarService) Execute(id string, file *dtos.Form) (*dtos.ResponseProfileDTO, error) {
 	if !util.IsValidUUID(id) {
 		return nil, &errs.AppError{
 			Message: "Id invalid.",
@@ -35,9 +38,15 @@ func (service *UpdateUserAvatarService) Execute(id, avatarFilename string) (*dto
 		}
 	}
 
-	user.Avatar = avatarFilename
+	if user.Avatar != "" {
+		service.DiskStorageProvider.DeleteFile(user.Avatar)
+	}
 
-	service.UserRepository.Save(user)
+	filename := service.DiskStorageProvider.SaveFile(file.Avatar)
+
+	user.Avatar = filename
+
+	service.UserRepository.Update(user)
 
 	userResponse := dtos.NewResponseProfileDTO(user.ID.String(), user.Name, user.Email,
 		user.Avatar, user.CreatedAt, user.UpdatedAt)

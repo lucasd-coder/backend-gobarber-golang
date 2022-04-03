@@ -4,13 +4,13 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.7.7
+	github.com/golang-jwt/jwt/v4 v4.4.1
 	github.com/google/uuid v1.3.0
 	github.com/google/wire v0.5.0
 	github.com/ilyakaznacheev/cleanenv v1.2.6
 	github.com/sirupsen/logrus v1.8.1
 	gorm.io/driver/postgres v1.3.1
-	gorm.io/gorm v1.23.3
-	github.com/golang-jwt/jwt/v4 v4.4.1
+	gorm.io/gorm v1.23.4
 )
 
 require (
@@ -38,10 +38,10 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
-	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3
-	golang.org/x/sys v0.0.0-20210806184541-e5e7981a1069 // indirect
+	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29
+	golang.org/x/sys v0.0.0-20220330033206-e17cdc41300f // indirect
 	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 	olympos.io/encoding/edn v0.0.0-20201019073823-d3554ca0b0a3 // indirect

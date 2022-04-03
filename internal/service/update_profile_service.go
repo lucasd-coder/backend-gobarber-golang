@@ -61,7 +61,7 @@ func (service *UpdateProfileService) Execute(id string, userDto *dtos.UpdateUser
 
 	user.Password = hash
 
-	service.UserRepository.Save(user)
+	service.UserRepository.Update(user)
 
 	userResponse := dtos.NewResponseProfileDTO(user.ID.String(), user.Name, user.Email,
 		user.Avatar, user.CreatedAt, user.UpdatedAt)
