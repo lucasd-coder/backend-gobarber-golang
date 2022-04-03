@@ -18,6 +18,14 @@ func NewUserRepository(connectionDb *gorm.DB) *UserRepository {
 }
 
 func (db *UserRepository) Save(user *model.User) {
+	err := db.Connection.Create(&user).Error
+	if err != nil {
+		logger.Log.Error(err.Error())
+		return
+	}
+}
+
+func (db *UserRepository) Update(user *model.User) {
 	err := db.Connection.Save(&user).Error
 	if err != nil {
 		logger.Log.Error(err.Error())

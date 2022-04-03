@@ -5,6 +5,7 @@ package app
 
 import (
 	"backend-gobarber-golang/internal/infra/repository"
+	"backend-gobarber-golang/internal/infra/storage"
 	"backend-gobarber-golang/internal/pkg/database"
 	"backend-gobarber-golang/internal/service"
 
@@ -39,4 +40,14 @@ func InitializeJWTService() *service.JWTService {
 func InitializeAuthenticateUserService() *service.AuthenticateUserService {
 	wire.Build(InitializeUserRepository, InitializeJWTService, service.NewAuthenticateUserService)
 	return &service.AuthenticateUserService{}
+}
+
+func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
+	wire.Build(storage.NewDiskStorageProvider)
+	return &storage.DiskStorageProvider{}
+}
+
+func InitializeUpdateUserAvatarService() *service.UpdateUserAvatarService {
+	wire.Build(InitializeUserRepository, InitializeDiskStorageProvider, service.NewUpdateUserAvatarService)
+	return &service.UpdateUserAvatarService{}
 }
