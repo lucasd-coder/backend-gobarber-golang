@@ -49,6 +49,10 @@ func Run(cfg *config.Config) {
 	sessionsController := controller.NewSessionsController(authenticateUserService)
 	sessionsController.InitRoutes(handler)
 
+	sendForgotPasswordEmailService := InitializeSendForgotPasswordEmailService()
+	forgotPasswordEmailController := controller.NewForgotPasswordController(sendForgotPasswordEmailService)
+	forgotPasswordEmailController.InitRoutes(handler)
+
 	err := engine.Run(":" + cfg.Port)
 	if err != nil {
 		panic(err)

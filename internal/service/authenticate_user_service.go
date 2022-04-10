@@ -24,14 +24,14 @@ func (service *AuthenticateUserService) Execute(dto *dtos.Credentials) (*dtos.Re
 	user := service.UserRepository.FindByEmail(dto.Email)
 
 	if user.Email == "" {
-		return nil, &errs.AppError{
+		return &dtos.ResponseUserAuthenticatedSuccessDTO{}, &errs.AppError{
 			Message: "Incorrect email/password combination.",
 			Code:    401,
 		}
 	}
 
 	if !util.CheckPasswordHash(dto.Password, user.Password) {
-		return nil, &errs.AppError{
+		return &dtos.ResponseUserAuthenticatedSuccessDTO{}, &errs.AppError{
 			Message: "Incorrect email/password combination.",
 			Code:    401,
 		}
