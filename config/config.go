@@ -33,8 +33,8 @@ type (
 	Postgres struct {
 		Host         string `env-required:"true" yaml:"host"`
 		PostgresPort int    `env-required:"true" yaml:"port"`
-		Username     string `env-required:"true" yaml:"username"`
-		Password     string `env-required:"true" yaml:"password"`
+		Username     string `env-required:"true" yaml:"username" env:"USERNAME_DB"`
+		Password     string `env-required:"true" yaml:"password" env:"PASSWORD_DB"`
 		Dbname       string `env-required:"true" yaml:"dbname"`
 		Schema       string `env-required:"true" yaml:"schema"`
 		MaxIdleConns int    `env-required:"true" yaml:"maxIdleConns"`
@@ -50,15 +50,15 @@ type (
 	}
 
 	Jwt struct {
-		Secret string `env-required:"true" yaml:"secret"`
-		Issuer string `env-required:"true" yaml:"issuer"`
+		Secret string `env-required:"true" yaml:"secret" env:"JWT_SECRET"`
+		Issuer string `env-required:"true" yaml:"issuer" env:"JWT_ISSUER"`
 	}
 
 	Smtp struct {
-		Host     string `env-required:"true" yaml:"host"`
-		SmtpPort string `env-required:"true" yaml:"port"`
-		Username string `env-required:"true" yaml:"username"`
-		Password string `env-required:"true" yaml:"password"`
+		Host     string `env-required:"true" yaml:"host" env:"HOST_ETHEREAL_MAIL"`
+		SmtpPort string `env-required:"true" yaml:"port" env:"PORT_ETHEREAL_MAIL"`
+		Username string `env-required:"true" yaml:"username" env:"USERNAME_ETHEREAL_MAIL"`
+		Password string `env-required:"true" yaml:"password" env:"PASSWORD_ETHEREAL_MAIL"`
 	}
 )
 

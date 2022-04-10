@@ -1,0 +1,35 @@
+app:
+  name: gobarber-golang
+  version: 1.0.0
+
+http:
+  port: 8080
+
+logger:
+  log_level: info
+
+application:
+  app_web_url: http://localhost:8080/gobarber-golang
+
+postgres:
+  host: localhost
+  port: 5432
+  username: ${USERNAME_DB}
+  password: ${PASSWORD_DB}
+  dbname: gobarber
+  schema: gobarber_golang
+  maxIdleConns: 10
+  MaxOpenConns: 100
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    issuer: ${JWT_ISSUER}
+
+etherealMail:
+  smtp:
+    host: ${HOST_ETHEREAL_MAIL}
+    port: ${PORT_ETHEREAL_MAIL}
+    username: ${USERNAME_ETHEREAL_MAIL}
+    password: ${PASSWORD_ETHEREAL_MAIL}
+
