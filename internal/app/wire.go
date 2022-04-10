@@ -8,6 +8,7 @@ import (
 	"backend-gobarber-golang/internal/infra/storage"
 	"backend-gobarber-golang/internal/pkg/database"
 	"backend-gobarber-golang/internal/service"
+	"backend-gobarber-golang/internal/template"
 
 	"github.com/google/wire"
 )
@@ -15,6 +16,11 @@ import (
 func InitializeUserRepository() *repository.UserRepository {
 	wire.Build(database.GetDatabase, repository.NewUserRepository)
 	return &repository.UserRepository{}
+}
+
+func InitializeUserTokenRepository() *repository.UserTokenRepository {
+	wire.Build(database.GetDatabase, repository.NewUserTokenRepository)
+	return &repository.UserTokenRepository{}
 }
 
 func InitializeCreateUsersService() *service.CreateUsersService {
@@ -42,12 +48,27 @@ func InitializeAuthenticateUserService() *service.AuthenticateUserService {
 	return &service.AuthenticateUserService{}
 }
 
+func InitializeUpdateUserAvatarService() *service.UpdateUserAvatarService {
+	wire.Build(InitializeUserRepository, InitializeDiskStorageProvider, service.NewUpdateUserAvatarService)
+	return &service.UpdateUserAvatarService{}
+}
+
+func InitializeSendForgotPasswordEmailService() *service.SendForgotPasswordEmailService {
+	wire.Build(InitializeUserRepository, InitializeUserTokenRepository, InitializeEtherealMailProvider, InitializeRenderForgotPasswordTemplate, service.NewSendForgotPasswordEmailService)
+	return &service.SendForgotPasswordEmailService{}
+}
+
 func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
 	wire.Build(storage.NewDiskStorageProvider)
 	return &storage.DiskStorageProvider{}
 }
 
-func InitializeUpdateUserAvatarService() *service.UpdateUserAvatarService {
-	wire.Build(InitializeUserRepository, InitializeDiskStorageProvider, service.NewUpdateUserAvatarService)
-	return &service.UpdateUserAvatarService{}
+func InitializeEtherealMailProvider() *storage.EtherealMailProvider {
+	wire.Build(storage.NewEtherealMailProvider)
+	return &storage.EtherealMailProvider{}
+}
+
+func InitializeRenderForgotPasswordTemplate() *template.RenderForgotPasswordTemplate {
+	wire.Build(template.NewRenderForgotPasswordTemplate)
+	return &template.RenderForgotPasswordTemplate{}
 }

@@ -11,6 +11,7 @@ import (
 	"backend-gobarber-golang/internal/infra/storage"
 	"backend-gobarber-golang/internal/pkg/database"
 	"backend-gobarber-golang/internal/service"
+	"backend-gobarber-golang/internal/template"
 )
 
 // Injectors from wire.go:
@@ -19,6 +20,12 @@ func InitializeUserRepository() *repository.UserRepository {
 	db := database.GetDatabase()
 	userRepository := repository.NewUserRepository(db)
 	return userRepository
+}
+
+func InitializeUserTokenRepository() *repository.UserTokenRepository {
+	db := database.GetDatabase()
+	userTokenRepository := repository.NewUserTokenRepository(db)
+	return userTokenRepository
 }
 
 func InitializeCreateUsersService() *service.CreateUsersService {
@@ -51,14 +58,33 @@ func InitializeAuthenticateUserService() *service.AuthenticateUserService {
 	return authenticateUserService
 }
 
-func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
-	diskStorageProvider := storage.NewDiskStorageProvider()
-	return diskStorageProvider
-}
-
 func InitializeUpdateUserAvatarService() *service.UpdateUserAvatarService {
 	userRepository := InitializeUserRepository()
 	diskStorageProvider := InitializeDiskStorageProvider()
 	updateUserAvatarService := service.NewUpdateUserAvatarService(userRepository, diskStorageProvider)
 	return updateUserAvatarService
+}
+
+func InitializeSendForgotPasswordEmailService() *service.SendForgotPasswordEmailService {
+	userRepository := InitializeUserRepository()
+	userTokenRepository := InitializeUserTokenRepository()
+	etherealMailProvider := InitializeEtherealMailProvider()
+	renderForgotPasswordTemplate := InitializeRenderForgotPasswordTemplate()
+	sendForgotPasswordEmailService := service.NewSendForgotPasswordEmailService(userRepository, userTokenRepository, etherealMailProvider, renderForgotPasswordTemplate)
+	return sendForgotPasswordEmailService
+}
+
+func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
+	diskStorageProvider := storage.NewDiskStorageProvider()
+	return diskStorageProvider
+}
+
+func InitializeEtherealMailProvider() *storage.EtherealMailProvider {
+	etherealMailProvider := storage.NewEtherealMailProvider()
+	return etherealMailProvider
+}
+
+func InitializeRenderForgotPasswordTemplate() *template.RenderForgotPasswordTemplate {
+	renderForgotPasswordTemplate := template.NewRenderForgotPasswordTemplate()
+	return renderForgotPasswordTemplate
 }

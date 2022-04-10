@@ -20,7 +20,7 @@ func NewUpdateProfileService(userRepository *repository.UserRepository) *UpdateP
 
 func (service *UpdateProfileService) Execute(id string, userDto *dtos.UpdateUserProfileDTO) (*dtos.ResponseProfileDTO, error) {
 	if !util.IsValidUUID(id) {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "Id invalid.",
 			Code:    400,
 		}
@@ -29,7 +29,7 @@ func (service *UpdateProfileService) Execute(id string, userDto *dtos.UpdateUser
 	user := service.UserRepository.FindById(id)
 
 	if user.Email == "" {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "User not found.",
 			Code:    404,
 		}
@@ -38,7 +38,7 @@ func (service *UpdateProfileService) Execute(id string, userDto *dtos.UpdateUser
 	userWithUpdateEmail := service.UserRepository.FindByEmail(userDto.Email)
 
 	if userWithUpdateEmail.Email != "" && userWithUpdateEmail.ID.String() != id {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "E-mail already in use.",
 			Code:    400,
 		}
@@ -48,7 +48,7 @@ func (service *UpdateProfileService) Execute(id string, userDto *dtos.UpdateUser
 	user.Email = userDto.Email
 
 	if !util.CheckPasswordHash(userDto.OldPassword, user.Password) {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "You need to inform the old password to set a new password.",
 			Code:    400,
 		}
@@ -56,7 +56,7 @@ func (service *UpdateProfileService) Execute(id string, userDto *dtos.UpdateUser
 
 	hash, err := util.HashPassword(userDto.Password)
 	if err != nil {
-		return nil, err
+		return &dtos.ResponseProfileDTO{}, err
 	}
 
 	user.Password = hash

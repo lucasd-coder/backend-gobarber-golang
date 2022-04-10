@@ -23,7 +23,7 @@ func (createUser *CreateUsersService) Execute(userDto *dtos.UserDTO) (*dtos.Resp
 	result := createUser.UserRepository.FindByEmail(userDto.Email)
 
 	if result.Email != "" {
-		return nil, &errs.AppError{
+		return &dtos.ResponseCreateUserDTO{}, &errs.AppError{
 			Message: "Email address already used by another",
 			Code:    400,
 		}
@@ -31,7 +31,7 @@ func (createUser *CreateUsersService) Execute(userDto *dtos.UserDTO) (*dtos.Resp
 
 	hash, err := util.HashPassword(userDto.Password)
 	if err != nil {
-		return nil, err
+		return &dtos.ResponseCreateUserDTO{}, err
 	}
 
 	user := model.NewUser(userDto.Name, userDto.Email, hash)

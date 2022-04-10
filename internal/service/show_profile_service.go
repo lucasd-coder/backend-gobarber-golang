@@ -20,7 +20,7 @@ func NewShowProfileService(userRepository *repository.UserRepository) *ShowProfi
 
 func (service *ShowProfileService) Execute(id string) (*dtos.ResponseProfileDTO, error) {
 	if !util.IsValidUUID(id) {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "Id invalid.",
 			Code:    400,
 		}
@@ -29,7 +29,7 @@ func (service *ShowProfileService) Execute(id string) (*dtos.ResponseProfileDTO,
 	result := service.UserRepository.FindById(id)
 
 	if result.Email == "" {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "User not found.",
 			Code:    404,
 		}

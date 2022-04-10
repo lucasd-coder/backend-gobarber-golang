@@ -23,7 +23,7 @@ func NewUpdateUserAvatarService(userRepository *repository.UserRepository, diskS
 
 func (service *UpdateUserAvatarService) Execute(id string, file *dtos.Form) (*dtos.ResponseProfileDTO, error) {
 	if !util.IsValidUUID(id) {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "Id invalid.",
 			Code:    400,
 		}
@@ -32,7 +32,7 @@ func (service *UpdateUserAvatarService) Execute(id string, file *dtos.Form) (*dt
 	user := service.UserRepository.FindById(id)
 
 	if user.Email == "" {
-		return nil, &errs.AppError{
+		return &dtos.ResponseProfileDTO{}, &errs.AppError{
 			Message: "User not found.",
 			Code:    404,
 		}
