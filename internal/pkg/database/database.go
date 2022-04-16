@@ -2,7 +2,6 @@ package database
 
 import (
 	"fmt"
-	"log"
 	"time"
 
 	"backend-gobarber-golang/config"
@@ -21,8 +20,9 @@ func StartDB(cfg *config.Config) {
 
 	database, err := gorm.Open(postgres.Open(str), &gorm.Config{})
 	if err != nil {
-		logger.Log.Error("Could not connect to the Postgres Database")
-		log.Fatal("Error: ", err)
+		logger.Log.Fatal(err.Error())
+	} else {
+		logger.Log.Infoln("Connected")
 	}
 
 	db = database

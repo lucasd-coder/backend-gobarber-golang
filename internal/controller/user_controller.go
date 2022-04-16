@@ -51,6 +51,7 @@ func (user *UserController) CreateUser(ctx *gin.Context) {
 	start := time.Now()
 	resp, err := user.createUsersService.Execute(&body)
 	if err != nil {
+		logger.Log.Error(err.Error())
 		ctx.Error(err)
 		return
 	}
@@ -66,6 +67,7 @@ func (user *UserController) ShowProfile(ctx *gin.Context) {
 
 	resp, err := user.showProfileService.Execute(fmt.Sprintf("%v", id))
 	if err != nil {
+		logger.Log.Error(err.Error())
 		ctx.Error(err)
 		return
 	}
@@ -87,6 +89,7 @@ func (user *UserController) UpdateProfile(ctx *gin.Context) {
 	start := time.Now()
 	resp, err := user.updateProfileService.Execute(fmt.Sprintf("%v", id), &body)
 	if err != nil {
+		logger.Log.Error(err.Error())
 		ctx.Error(err)
 		return
 	}
@@ -110,6 +113,7 @@ func (user *UserController) UpdateUserAvatar(ctx *gin.Context) {
 	start := time.Now()
 	resp, err := user.updateUserAvatarService.Execute(fmt.Sprintf("%v", id), &form)
 	if err != nil {
+		logger.Log.Error(err.Error())
 		ctx.Error(err)
 		return
 	}

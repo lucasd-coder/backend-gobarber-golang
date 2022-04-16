@@ -6,5 +6,5 @@ type AppError struct {
 }
 
 func (r *AppError) Error() string {
-	return ""
+	return r.Message
 }
