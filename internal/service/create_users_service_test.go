@@ -32,7 +32,7 @@ func (mock *MockRepository) FindById(id string) *model.User {
 	return &model.User{}
 }
 
-func TestCreateUsersServiceWhen_UserAddressOfAlreadyExisting(t *testing.T) {
+func TestCreateUsersService_UserAddressOfAlreadyExisting(t *testing.T) {
 	mockRepo := new(MockRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
@@ -50,7 +50,7 @@ func TestCreateUsersServiceWhen_UserAddressOfAlreadyExisting(t *testing.T) {
 	assert.Equal(t, "Email address already used by another", err.Error())
 }
 
-func TestCreateUserServiceWhen_UserValid(t *testing.T) {
+func TestCreateUserService_UserValid(t *testing.T) {
 	mockRepo := new(MockRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
