@@ -6,36 +6,14 @@ import (
 	"backend-gobarber-golang/internal/dtos"
 	"backend-gobarber-golang/internal/model"
 	"backend-gobarber-golang/internal/service"
+	"backend-gobarber-golang/internal/test"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 )
 
-type MockUserRepository struct {
-	mock.Mock
-}
-
-func (mock *MockUserRepository) Save(user *model.User) {
-}
-
-func (mock *MockUserRepository) FindByEmail(email string) *model.User {
-	args := mock.Called(email)
-	result := args.Get(0)
-	return result.(*model.User)
-}
-
-func (mock *MockUserRepository) Update(user *model.User) {
-}
-
-func (mock *MockUserRepository) FindById(id string) *model.User {
-	args := mock.Called(id)
-	result := args.Get(0)
-	return result.(*model.User)
-}
-
 func TestUpdateProfileService_InvalidID(t *testing.T) {
-	mockRepo := new(MockUserRepository)
+	mockRepo := new(test.MockUserRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
 	user := model.User{ID: id, Name: "lucas", Email: "lucas@gmail.com", Password: "123456"}
@@ -52,7 +30,7 @@ func TestUpdateProfileService_InvalidID(t *testing.T) {
 }
 
 func TestUpdateProfileService_UserNotFound(t *testing.T) {
-	mockRepo := new(MockUserRepository)
+	mockRepo := new(test.MockUserRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
 	user := model.User{ID: id, Name: "lucas", Email: "lucas@gmail.com", Password: "123456"}
@@ -70,7 +48,7 @@ func TestUpdateProfileService_UserNotFound(t *testing.T) {
 }
 
 func TestUpdateProfileService_EmailAlreadyInUse(t *testing.T) {
-	mockRepo := new(MockUserRepository)
+	mockRepo := new(test.MockUserRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
 	var idExists uuid.UUID = uuid.MustParse("b7ca51e4-cd89-4bd0-ac1e-a6d09bcf0e10")
@@ -95,7 +73,7 @@ func TestUpdateProfileService_EmailAlreadyInUse(t *testing.T) {
 }
 
 func TestUpdateProfileService_InvalidOldPassword(t *testing.T) {
-	mockRepo := new(MockUserRepository)
+	mockRepo := new(test.MockUserRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
 
@@ -118,7 +96,7 @@ func TestUpdateProfileService_InvalidOldPassword(t *testing.T) {
 }
 
 func TestUpdateProfileService_UpdatedSuccess(t *testing.T) {
-	mockRepo := new(MockUserRepository)
+	mockRepo := new(test.MockUserRepository)
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
 
