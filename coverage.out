@@ -3,12 +3,6 @@ backend-gobarber-golang/internal/model/user.go:20.51,24.2 3 0
 backend-gobarber-golang/internal/model/user.go:26.64,32.2 1 1
 backend-gobarber-golang/internal/model/user_tokens.go:19.61,24.2 4 0
 backend-gobarber-golang/internal/model/user_tokens.go:26.45,30.2 1 1
-backend-gobarber-golang/internal/service/authenticate_user_service.go:16.125,21.2 1 0
-backend-gobarber-golang/internal/service/authenticate_user_service.go:23.123,26.22 2 1
-backend-gobarber-golang/internal/service/authenticate_user_service.go:33.2,33.58 1 1
-backend-gobarber-golang/internal/service/authenticate_user_service.go:40.2,47.22 4 1
-backend-gobarber-golang/internal/service/authenticate_user_service.go:26.22,31.3 1 1
-backend-gobarber-golang/internal/service/authenticate_user_service.go:33.58,38.3 1 1
 backend-gobarber-golang/internal/service/create_users_service.go:16.91,20.2 1 0
 backend-gobarber-golang/internal/service/create_users_service.go:22.107,25.24 2 1
 backend-gobarber-golang/internal/service/create_users_service.go:32.2,33.16 2 1
@@ -55,3 +49,9 @@ backend-gobarber-golang/internal/service/update_user_avatar_service.go:45.2,54.2
 backend-gobarber-golang/internal/service/update_user_avatar_service.go:25.27,30.3 1 1
 backend-gobarber-golang/internal/service/update_user_avatar_service.go:34.22,39.3 1 1
 backend-gobarber-golang/internal/service/update_user_avatar_service.go:41.23,43.3 1 0
+backend-gobarber-golang/internal/service/authenticate_user_service.go:16.125,21.2 1 0
+backend-gobarber-golang/internal/service/authenticate_user_service.go:23.123,26.22 2 1
+backend-gobarber-golang/internal/service/authenticate_user_service.go:33.2,33.58 1 1
+backend-gobarber-golang/internal/service/authenticate_user_service.go:40.2,47.22 4 1
+backend-gobarber-golang/internal/service/authenticate_user_service.go:26.22,31.3 1 1
+backend-gobarber-golang/internal/service/authenticate_user_service.go:33.58,38.3 1 1

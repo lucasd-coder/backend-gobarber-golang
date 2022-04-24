@@ -8,9 +8,17 @@ type (
 		HTTP         `yaml:"http"`
 		Log          `yaml:"logger"`
 		Postgres     `yaml:"postgres"`
+		MongoDb      `yaml:"mongodb"`
 		Security     `yaml:"security"`
 		EtherealMail `yaml:"etherealMail"`
 		Application  `yaml:"application"`
+		Cache        `yaml:"cache"`
+	}
+
+	Cache struct {
+		RedisUrl      string `yaml:"url"`
+		RedisDb       int    `yaml:"db"`
+		RedisPassword string `yaml:"password"`
 	}
 
 	App struct {
@@ -39,6 +47,11 @@ type (
 		Schema       string `env-required:"true" yaml:"schema"`
 		MaxIdleConns int    `env-required:"true" yaml:"maxIdleConns"`
 		MaxOpenConns int    `env-required:"true" yaml:"MaxOpenConns"`
+	}
+
+	MongoDb struct {
+		MongoDbHost string `env-required:"true" yaml:"host"`
+		MongoDbPort int    `env-required:"true" yaml:"port"`
 	}
 
 	Security struct {

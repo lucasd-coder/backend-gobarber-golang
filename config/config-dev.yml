@@ -8,6 +8,11 @@ http:
 logger:
   log_level: info
 
+cache:
+  url: 127.0.0.1:6379
+  db: 4
+  password:
+
 application:
   app_web_url: http://localhost:8080/gobarber-golang
 
@@ -20,6 +25,10 @@ postgres:
   schema: gobarber_golang
   maxIdleConns: 10
   MaxOpenConns: 100
+
+mongodb:
+  host: localhost
+  port: 27017
 
 security:
   jwt:
