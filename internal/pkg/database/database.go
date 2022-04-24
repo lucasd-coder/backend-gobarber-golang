@@ -22,7 +22,7 @@ func StartDB(cfg *config.Config) {
 	if err != nil {
 		logger.Log.Fatal(err.Error())
 	} else {
-		logger.Log.Infoln("Connected")
+		logger.Log.Infoln("Postgres Connected")
 	}
 
 	db = database

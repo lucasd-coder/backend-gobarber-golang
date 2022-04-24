@@ -5,6 +5,7 @@ import (
 	"backend-gobarber-golang/internal/controller"
 	"backend-gobarber-golang/internal/middlewares"
 	"backend-gobarber-golang/internal/pkg/database"
+	"backend-gobarber-golang/internal/pkg/mongodb"
 
 	"backend-gobarber-golang/pkg/logger"
 
@@ -17,6 +18,9 @@ func Run(cfg *config.Config) {
 
 	// Database Config
 	database.StartDB(cfg)
+
+	// Mongo Config
+	mongodb.SetUpMongoDB(cfg)
 
 	// Close Database
 	defer database.CloseConn()

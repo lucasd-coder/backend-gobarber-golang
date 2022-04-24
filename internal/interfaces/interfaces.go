@@ -2,6 +2,7 @@ package interfaces
 
 import (
 	"mime/multipart"
+	"time"
 
 	"backend-gobarber-golang/internal/dtos"
 	"backend-gobarber-golang/internal/model"
@@ -47,6 +48,17 @@ type (
 		FindById(id string) *model.User
 	}
 
+	AppointmentsRepository interface {
+		Save(appointment *model.Appointment)
+		FindByDate(date time.Timer, providerId string) *model.Appointment
+		FindAllInMonthFromProvider(data *dtos.FindAllInMonthFromProviderDTO) []*model.Appointment
+		FindAllInDayFromProvider(data *dtos.FindAllInDayFromProviderDTO) []*model.Appointment
+	}
+
+	NotificationsRepository interface {
+		Save(notification *model.Notification)
+	}
+
 	UserTokenRepository interface {
 		Generate(userToken *model.UserToken) *model.UserToken
 		FindByToken(token string) *model.UserToken
@@ -55,6 +67,13 @@ type (
 	DiskStorageProvider interface {
 		SaveFile(file *multipart.FileHeader) string
 		DeleteFile(file string)
+	}
+
+	CacheProvider interface {
+		Save(key string, value interface{}, ttl time.Duration) error
+		Recover(key string) interface{}
+		Invalidate(key string) error
+		InvalidatePrefix(prefix string) error
 	}
 
 	EtherealMailProvider interface {
