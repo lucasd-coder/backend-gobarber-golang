@@ -10,5 +10,7 @@ type MockNotificationsRepository struct {
 	mock.Mock
 }
 
-func (mock *MockNotificationsRepository) Save(notification *model.Notification) {
+func (mock *MockNotificationsRepository) Save(notification *model.Notification) error {
+	args := mock.Called(notification)
+	return args.Error(0)
 }

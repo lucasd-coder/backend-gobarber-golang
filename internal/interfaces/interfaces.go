@@ -1,6 +1,7 @@
 package interfaces
 
 import (
+	"context"
 	"mime/multipart"
 	"time"
 
@@ -14,6 +15,10 @@ import (
 type (
 	CreateUsersService interface {
 		Execute(user *dtos.UserDTO) (*dtos.ResponseCreateUserDTO, error)
+	}
+
+	CreateAppointmentService interface {
+		Execute(userId string, dto *dtos.AppointmentDTO) (*model.Appointment, error)
 	}
 
 	ShowProfileService interface {
@@ -50,13 +55,13 @@ type (
 
 	AppointmentsRepository interface {
 		Save(appointment *model.Appointment)
-		FindByDate(date time.Timer, providerId string) *model.Appointment
+		FindByDate(date *time.Time, providerId string) *model.Appointment
 		FindAllInMonthFromProvider(data *dtos.FindAllInMonthFromProviderDTO) []*model.Appointment
 		FindAllInDayFromProvider(data *dtos.FindAllInDayFromProviderDTO) []*model.Appointment
 	}
 
 	NotificationsRepository interface {
-		Save(notification *model.Notification)
+		Save(notification *model.Notification) error
 	}
 
 	UserTokenRepository interface {
@@ -70,10 +75,10 @@ type (
 	}
 
 	CacheProvider interface {
-		Save(key string, value interface{}, ttl time.Duration) error
-		Recover(key string) interface{}
-		Invalidate(key string) error
-		InvalidatePrefix(prefix string) error
+		Save(ctx context.Context, key string, value interface{}, ttl time.Duration) error
+		Recover(ctx context.Context, key string) interface{}
+		Invalidate(ctx context.Context, key string) error
+		InvalidatePrefix(ctx context.Context, prefix string) error
 	}
 
 	EtherealMailProvider interface {

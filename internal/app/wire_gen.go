@@ -10,8 +10,10 @@ import (
 	"backend-gobarber-golang/internal/infra/repository"
 	"backend-gobarber-golang/internal/infra/storage"
 	"backend-gobarber-golang/internal/pkg/database"
+	"backend-gobarber-golang/internal/pkg/mongodb"
 	"backend-gobarber-golang/internal/service"
 	"backend-gobarber-golang/internal/template"
+	"backend-gobarber-golang/pkg/cache"
 )
 
 // Injectors from wire.go:
@@ -26,6 +28,18 @@ func InitializeUserTokenRepository() *repository.UserTokenRepository {
 	db := database.GetDatabase()
 	userTokenRepository := repository.NewUserTokenRepository(db)
 	return userTokenRepository
+}
+
+func InitializeAppointmentRepository() *repository.AppointmentsRepository {
+	db := database.GetDatabase()
+	appointmentsRepository := repository.NewAppointmentsRepository(db)
+	return appointmentsRepository
+}
+
+func InitializeNotificationsRepository() *repository.NotificationsRepository {
+	client := mongodb.GetClientMongoDB()
+	notificationsRepository := repository.NewNotificationsRepository(client)
+	return notificationsRepository
 }
 
 func InitializeCreateUsersService() *service.CreateUsersService {
@@ -74,6 +88,14 @@ func InitializeSendForgotPasswordEmailService() *service.SendForgotPasswordEmail
 	return sendForgotPasswordEmailService
 }
 
+func InitializeCreateAppointmentService() *service.CreateAppointmentService {
+	appointmentsRepository := InitializeAppointmentRepository()
+	notificationsRepository := InitializeNotificationsRepository()
+	cacheProvider := InitializeCacheProvider()
+	createAppointmentService := service.NewCreateAppointmentService(appointmentsRepository, notificationsRepository, cacheProvider)
+	return createAppointmentService
+}
+
 func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
 	diskStorageProvider := storage.NewDiskStorageProvider()
 	return diskStorageProvider
@@ -82,6 +104,12 @@ func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
 func InitializeEtherealMailProvider() *storage.EtherealMailProvider {
 	etherealMailProvider := storage.NewEtherealMailProvider()
 	return etherealMailProvider
+}
+
+func InitializeCacheProvider() *storage.CacheProvider {
+	client := cache.GetClient()
+	cacheProvider := storage.NewCacheProvider(client)
+	return cacheProvider
 }
 
 func InitializeRenderForgotPasswordTemplate() *template.RenderForgotPasswordTemplate {

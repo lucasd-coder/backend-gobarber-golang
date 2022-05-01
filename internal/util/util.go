@@ -3,6 +3,7 @@ package util
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 
 	"backend-gobarber-golang/pkg/logger"
 
@@ -22,6 +23,17 @@ func JsonLog(payload interface{}) *bytes.Buffer {
 func IsValidUUID(u string) bool {
 	_, err := uuid.Parse(u)
 	return err == nil
+}
+
+func DateUtils(aux time.Time, layOut string) (*time.Time, error) {
+	timeStampString := aux.Format(layOut)
+	timeStamp, err := time.Parse(layOut, timeStampString)
+
+	return &timeStamp, err
+}
+
+func DateFormat(date time.Time, layout string) string {
+	return date.Format(layout)
 }
 
 func HashPassword(password string) (string, error) {

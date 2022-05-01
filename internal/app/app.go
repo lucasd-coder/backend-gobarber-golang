@@ -7,6 +7,7 @@ import (
 	"backend-gobarber-golang/internal/pkg/database"
 	"backend-gobarber-golang/internal/pkg/mongodb"
 
+	"backend-gobarber-golang/pkg/cache"
 	"backend-gobarber-golang/pkg/logger"
 
 	"github.com/gin-gonic/gin"
@@ -22,8 +23,14 @@ func Run(cfg *config.Config) {
 	// Mongo Config
 	mongodb.SetUpMongoDB(cfg)
 
+	// Redis Config
+	cache.SetUpRedis(cfg)
+
 	// Close Database
 	defer database.CloseConn()
+
+	// Clode MongoDB
+	defer mongodb.CloseConnMongoDB()
 
 	// Http server
 	engine := gin.New()
@@ -43,6 +50,7 @@ func Run(cfg *config.Config) {
 	showProfileService := InitializeShowProfileService()
 	updateProfileService := InitializeUpdateProfileService()
 	updateUserAvatarService := InitializeUpdateUserAvatarService()
+	createAppointmentService := InitializeCreateAppointmentService()
 
 	userController := controller.NewUserController(createUsersService, showProfileService,
 		updateProfileService, updateUserAvatarService)
@@ -56,6 +64,9 @@ func Run(cfg *config.Config) {
 	sendForgotPasswordEmailService := InitializeSendForgotPasswordEmailService()
 	forgotPasswordEmailController := controller.NewForgotPasswordController(sendForgotPasswordEmailService)
 	forgotPasswordEmailController.InitRoutes(handler)
+
+	createAppointmentController := controller.NewAppointmentsController(createAppointmentService)
+	createAppointmentController.InitRoutes(handler)
 
 	err := engine.Run(":" + cfg.Port)
 	if err != nil {
