@@ -7,8 +7,10 @@ import (
 	"backend-gobarber-golang/internal/infra/repository"
 	"backend-gobarber-golang/internal/infra/storage"
 	"backend-gobarber-golang/internal/pkg/database"
+	"backend-gobarber-golang/internal/pkg/mongodb"
 	"backend-gobarber-golang/internal/service"
 	"backend-gobarber-golang/internal/template"
+	"backend-gobarber-golang/pkg/cache"
 
 	"github.com/google/wire"
 )
@@ -21,6 +23,16 @@ func InitializeUserRepository() *repository.UserRepository {
 func InitializeUserTokenRepository() *repository.UserTokenRepository {
 	wire.Build(database.GetDatabase, repository.NewUserTokenRepository)
 	return &repository.UserTokenRepository{}
+}
+
+func InitializeAppointmentRepository() *repository.AppointmentsRepository {
+	wire.Build(database.GetDatabase, repository.NewAppointmentsRepository)
+	return &repository.AppointmentsRepository{}
+}
+
+func InitializeNotificationsRepository() *repository.NotificationsRepository {
+	wire.Build(mongodb.GetClientMongoDB, repository.NewNotificationsRepository)
+	return &repository.NotificationsRepository{}
 }
 
 func InitializeCreateUsersService() *service.CreateUsersService {
@@ -58,6 +70,11 @@ func InitializeSendForgotPasswordEmailService() *service.SendForgotPasswordEmail
 	return &service.SendForgotPasswordEmailService{}
 }
 
+func InitializeCreateAppointmentService() *service.CreateAppointmentService {
+	wire.Build(InitializeAppointmentRepository, InitializeNotificationsRepository, InitializeCacheProvider, service.NewCreateAppointmentService)
+	return &service.CreateAppointmentService{}
+}
+
 func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
 	wire.Build(storage.NewDiskStorageProvider)
 	return &storage.DiskStorageProvider{}
@@ -66,6 +83,11 @@ func InitializeDiskStorageProvider() *storage.DiskStorageProvider {
 func InitializeEtherealMailProvider() *storage.EtherealMailProvider {
 	wire.Build(storage.NewEtherealMailProvider)
 	return &storage.EtherealMailProvider{}
+}
+
+func InitializeCacheProvider() *storage.CacheProvider {
+	wire.Build(cache.GetClient, storage.NewCacheProvider)
+	return &storage.CacheProvider{}
 }
 
 func InitializeRenderForgotPasswordTemplate() *template.RenderForgotPasswordTemplate {

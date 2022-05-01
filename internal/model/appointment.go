@@ -23,3 +23,11 @@ func (appointment *Appointment) BeforeCreate(tx *gorm.DB) error {
 	tx.Statement.SetColumn("ID", uuid)
 	return nil
 }
+
+func NewAppointment(userId, providerId string, date time.Time) *Appointment {
+	return &Appointment{
+		UserID:     userId,
+		ProviderID: providerId,
+		Date:       date,
+	}
+}

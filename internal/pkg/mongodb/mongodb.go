@@ -34,10 +34,17 @@ func SetUpMongoDB(cfg *config.Config) {
 	}
 
 	client = mongoClient
-
-	defer client.Disconnect(ctx)
 }
 
 func GetClientMongoDB() *mongo.Client {
 	return client
+}
+
+func CloseConnMongoDB() error {
+	err := client.Disconnect(context.TODO())
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
