@@ -16,7 +16,7 @@ type MockAppointmentsRepository struct {
 func (mock *MockAppointmentsRepository) Save(appointment *model.Appointment) {
 }
 
-func (mock *MockAppointmentsRepository) FindByDate(date time.Timer, providerId string) *model.Appointment {
+func (mock *MockAppointmentsRepository) FindByDate(date *time.Time, providerId string) *model.Appointment {
 	args := mock.Called(date, providerId)
 	result := args.Get(0)
 	return result.(*model.Appointment)
