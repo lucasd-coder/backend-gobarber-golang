@@ -29,6 +29,10 @@ type (
 		Execute(id string, user *dtos.UpdateUserProfileDTO) (*dtos.ResponseProfileDTO, error)
 	}
 
+	ListProviderAppointmentsService interface {
+		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]model.Appointment, error)
+	}
+
 	JWTService interface {
 		GenerateToken(email string) string
 		ValidateToken(tokenString string) (*jwt.Token, error)

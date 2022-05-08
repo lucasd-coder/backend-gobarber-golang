@@ -51,7 +51,7 @@ func (service *CreateAppointmentService) Execute(userId string, dto *dtos.Appoin
 		}
 	}
 
-	if appointmentDate.Before(*timeStamp) {
+	if timeStamp.Before(appointmentDate) {
 		return &model.Appointment{}, &errs.AppError{
 			Message: "You can't create an appointment on a post date.",
 			Code:    400,
