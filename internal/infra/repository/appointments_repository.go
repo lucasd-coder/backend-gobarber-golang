@@ -21,7 +21,7 @@ func NewAppointmentsRepository(connectionDb *gorm.DB) *AppointmentsRepository {
 }
 
 func (db *AppointmentsRepository) Save(appointment *model.Appointment) {
-	err := db.Connection.Save(&appointment).Error
+	err := db.Connection.Create(&appointment).Error
 	if err != nil {
 		logger.Log.Error(err.Error())
 		return
