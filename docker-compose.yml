@@ -14,10 +14,9 @@ services:
       - 'postgresql_data:/bitnami/postgresql'
   
   redis:
-    image: redis:alpine    
-    restart: always
+    image: redis:alpine
     ports:
-      - 6379:6379
+      - 6380:6380
   
   mongodb:
     image: mongo

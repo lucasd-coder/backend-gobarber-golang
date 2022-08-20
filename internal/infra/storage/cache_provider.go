@@ -21,8 +21,8 @@ func (cacheProvider *CacheProvider) Save(ctx context.Context, key string, value 
 	return nil
 }
 
-func (cacheProvider *CacheProvider) Recover(ctx context.Context, key string) interface{} {
-	return nil
+func (cacheProvider *CacheProvider) Recover(ctx context.Context, key string) (string, error) {
+	return cacheProvider.Client.Get(ctx, key).Result()
 }
 
 func (cacheProvider *CacheProvider) Invalidate(ctx context.Context, key string) error {

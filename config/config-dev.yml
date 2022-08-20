@@ -3,13 +3,13 @@ app:
   version: 1.0.0
 
 http:
-  port: 8080
+  port: 8282
 
 logger:
   log_level: info
 
 cache:
-  url: 127.0.0.1:6379
+  url: 127.0.0.1:6380
   db: 4
   password:
 

@@ -10,6 +10,7 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/plugin/prometheus"
 )
 
 var db *gorm.DB
@@ -24,6 +25,19 @@ func StartDB(cfg *config.Config) {
 	} else {
 		logger.Log.Infoln("Postgres Connected")
 	}
+
+	database.Use(prometheus.New(
+		prometheus.Config{
+			DBName:          cfg.Dbname,
+			RefreshInterval: 15,
+			StartServer:     false,
+			MetricsCollector: []prometheus.MetricsCollector{
+				&prometheus.Postgres{
+					VariableNames: []string{"Threads_running"},
+				},
+			},
+		},
+	))
 
 	db = database
 

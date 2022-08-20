@@ -30,7 +30,7 @@ type (
 	}
 
 	ListProviderAppointmentsService interface {
-		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]model.Appointment, error)
+		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]*model.Appointment, error)
 	}
 
 	JWTService interface {
@@ -80,7 +80,7 @@ type (
 
 	CacheProvider interface {
 		Save(ctx context.Context, key string, value interface{}, ttl time.Duration) error
-		Recover(ctx context.Context, key string) interface{}
+		Recover(ctx context.Context, key string) (string, error)
 		Invalidate(ctx context.Context, key string) error
 		InvalidatePrefix(ctx context.Context, prefix string) error
 	}

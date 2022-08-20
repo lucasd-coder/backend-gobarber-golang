@@ -11,6 +11,7 @@ import (
 	"backend-gobarber-golang/pkg/logger"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func Run(cfg *config.Config) {
@@ -35,6 +36,7 @@ func Run(cfg *config.Config) {
 	// Http server
 	engine := gin.New()
 	engine.Use(gin.Recovery())
+	engine.Use(middlewares.PrometheusHandler())
 	engine.Use(middlewares.JSONAppErrorReporter())
 	engine.MaxMultipartMemory = 8 << 20 // 8 MiB
 
@@ -45,6 +47,7 @@ func Run(cfg *config.Config) {
 			"status": "UP",
 		})
 	})
+	handler.GET("/metrics", gin.WrapH(promhttp.Handler()))
 
 	createUsersService := InitializeCreateUsersService()
 	showProfileService := InitializeShowProfileService()
