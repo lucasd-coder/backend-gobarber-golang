@@ -1,7 +1,7 @@
 package cache
 
 import (
-	"backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
 
 	"github.com/go-redis/redis/v8"
 )

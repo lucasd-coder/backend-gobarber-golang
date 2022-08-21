@@ -1,11 +1,11 @@
 package service
 
 import (
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/infra/errs"
-	"backend-gobarber-golang/internal/infra/repository"
-	"backend-gobarber-golang/internal/interfaces"
-	"backend-gobarber-golang/internal/util"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/errs"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/interfaces"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/util"
 )
 
 type ShowProfileService struct {

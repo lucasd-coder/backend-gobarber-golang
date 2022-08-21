@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"

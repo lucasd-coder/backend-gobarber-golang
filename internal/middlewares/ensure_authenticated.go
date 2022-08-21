@@ -3,8 +3,8 @@ package middlewares
 import (
 	"net/http"
 
-	"backend-gobarber-golang/internal/service"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"

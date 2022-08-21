@@ -3,10 +3,10 @@ package controller
 import (
 	"net/http"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/interfaces"
-	"backend-gobarber-golang/internal/service"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/interfaces"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,14 +1,14 @@
 package app
 
 import (
-	"backend-gobarber-golang/config"
-	"backend-gobarber-golang/internal/controller"
-	"backend-gobarber-golang/internal/middlewares"
-	"backend-gobarber-golang/internal/pkg/database"
-	"backend-gobarber-golang/internal/pkg/mongodb"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/controller"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/middlewares"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/database"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/mongodb"
 
-	"backend-gobarber-golang/pkg/cache"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/cache"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"

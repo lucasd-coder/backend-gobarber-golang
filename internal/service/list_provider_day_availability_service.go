@@ -1,9 +1,9 @@
 package service
 
 import (
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/infra/repository"
-	"backend-gobarber-golang/internal/interfaces"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/interfaces"
 )
 
 type ListProviderDayAvailabilityService struct {

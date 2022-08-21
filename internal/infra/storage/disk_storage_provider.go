@@ -8,7 +8,7 @@ import (
 	"path"
 	"path/filepath"
 
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/google/uuid"
 )

@@ -3,7 +3,7 @@ package logger
 import (
 	"os"
 
-	"backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
 
 	log "github.com/sirupsen/logrus"
 )

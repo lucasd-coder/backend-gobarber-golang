@@ -1,4 +1,4 @@
-module backend-gobarber-golang
+module github.com/lucasd-coder/backend-gobarber-golang
 
 go 1.18
 

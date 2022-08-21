@@ -7,9 +7,9 @@ import (
 	"runtime"
 	"text/template"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model/external"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model/external"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 )
 
 type RenderForgotPasswordTemplate struct{}

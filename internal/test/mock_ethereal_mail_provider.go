@@ -1,8 +1,8 @@
 package test
 
 import (
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model/external"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model/external"
 
 	"github.com/stretchr/testify/mock"
 )

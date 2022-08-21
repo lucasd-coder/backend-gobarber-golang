@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model"
-	"backend-gobarber-golang/internal/service"
-	"backend-gobarber-golang/internal/test"
-	"backend-gobarber-golang/internal/util"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/test"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/util"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

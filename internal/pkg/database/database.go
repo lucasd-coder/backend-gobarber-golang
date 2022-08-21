@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"backend-gobarber-golang/config"
-	"backend-gobarber-golang/internal/pkg/migrations"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/migrations"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

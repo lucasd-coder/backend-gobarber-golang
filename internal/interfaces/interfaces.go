@@ -5,9 +5,9 @@ import (
 	"mime/multipart"
 	"time"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model"
-	"backend-gobarber-golang/internal/model/external"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model/external"
 
 	"github.com/golang-jwt/jwt/v4"
 )

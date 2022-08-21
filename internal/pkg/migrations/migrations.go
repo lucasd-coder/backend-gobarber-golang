@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 
 	"gorm.io/gorm"
 )

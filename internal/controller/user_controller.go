@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"time"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/interfaces"
-	"backend-gobarber-golang/internal/middlewares"
-	"backend-gobarber-golang/internal/service"
-	"backend-gobarber-golang/internal/util"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/interfaces"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/middlewares"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/util"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )

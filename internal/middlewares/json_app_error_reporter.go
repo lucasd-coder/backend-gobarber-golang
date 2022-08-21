@@ -3,7 +3,7 @@ package middlewares
 import (
 	"net/http"
 
-	"backend-gobarber-golang/internal/infra/errs"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/errs"
 
 	"github.com/gin-gonic/gin"
 )

@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"time"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/infra/errs"
-	"backend-gobarber-golang/internal/infra/repository"
-	"backend-gobarber-golang/internal/infra/storage"
-	"backend-gobarber-golang/internal/interfaces"
-	"backend-gobarber-golang/internal/model"
-	"backend-gobarber-golang/internal/util"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/errs"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/storage"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/interfaces"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/util"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/google/uuid"
 )

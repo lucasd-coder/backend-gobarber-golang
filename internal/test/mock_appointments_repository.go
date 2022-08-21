@@ -3,8 +3,8 @@ package test
 import (
 	"time"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 
 	"github.com/stretchr/testify/mock"
 )

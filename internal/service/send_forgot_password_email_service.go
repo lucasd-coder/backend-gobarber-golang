@@ -3,16 +3,16 @@ package service
 import (
 	"fmt"
 
-	"backend-gobarber-golang/config"
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/infra/errs"
-	"backend-gobarber-golang/internal/infra/repository"
-	"backend-gobarber-golang/internal/infra/storage"
-	"backend-gobarber-golang/internal/interfaces"
-	"backend-gobarber-golang/internal/model"
-	"backend-gobarber-golang/internal/model/external"
-	"backend-gobarber-golang/internal/template"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/errs"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/storage"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/interfaces"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model/external"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/template"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 )
 
 type SendForgotPasswordEmailService struct {

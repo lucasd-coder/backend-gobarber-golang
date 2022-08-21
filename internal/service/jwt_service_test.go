@@ -3,7 +3,7 @@ package service_test
 import (
 	"testing"
 
-	"backend-gobarber-golang/internal/service"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

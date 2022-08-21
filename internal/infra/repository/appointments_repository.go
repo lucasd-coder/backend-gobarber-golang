@@ -3,9 +3,9 @@ package repository
 import (
 	"time"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"gorm.io/gorm"
 )

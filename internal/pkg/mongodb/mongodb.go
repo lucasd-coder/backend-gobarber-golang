@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"backend-gobarber-golang/config"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

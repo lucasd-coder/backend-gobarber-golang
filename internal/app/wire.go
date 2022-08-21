@@ -4,13 +4,13 @@
 package app
 
 import (
-	"backend-gobarber-golang/internal/infra/repository"
-	"backend-gobarber-golang/internal/infra/storage"
-	"backend-gobarber-golang/internal/pkg/database"
-	"backend-gobarber-golang/internal/pkg/mongodb"
-	"backend-gobarber-golang/internal/service"
-	"backend-gobarber-golang/internal/template"
-	"backend-gobarber-golang/pkg/cache"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/storage"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/database"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/mongodb"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/template"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/cache"
 
 	"github.com/google/wire"
 )

@@ -3,8 +3,8 @@ package storage
 import (
 	"net/smtp"
 
-	"backend-gobarber-golang/internal/dtos"
-	"backend-gobarber-golang/internal/model/external"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model/external"
 )
 
 type EtherealMailProvider struct{}

@@ -3,7 +3,7 @@ package model_test
 import (
 	"testing"
 
-	"backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"

@@ -1,7 +1,7 @@
 package test
 
 import (
-	"backend-gobarber-golang/internal/model"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 
 	"github.com/stretchr/testify/mock"
 )

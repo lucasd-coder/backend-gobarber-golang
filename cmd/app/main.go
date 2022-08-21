@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"backend-gobarber-golang/config"
-	"backend-gobarber-golang/internal/app"
-	"backend-gobarber-golang/pkg/logger"
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
+	"github.com/lucasd-coder/backend-gobarber-golang/internal/app"
+	"github.com/lucasd-coder/backend-gobarber-golang/pkg/logger"
 
 	"github.com/ilyakaznacheev/cleanenv"
 )
