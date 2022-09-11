@@ -33,6 +33,10 @@ type (
 		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]*model.Appointment, error)
 	}
 
+	ListProviderDayAvailabilityService interface {
+		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]*dtos.ResponseProviderDTO, error)
+	}
+
 	JWTService interface {
 		GenerateToken(email string) string
 		ValidateToken(tokenString string) (*jwt.Token, error)
