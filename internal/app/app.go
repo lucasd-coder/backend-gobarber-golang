@@ -71,6 +71,10 @@ func Run(cfg *config.Config) {
 	createAppointmentController := controller.NewAppointmentsController(createAppointmentService)
 	createAppointmentController.InitRoutes(handler)
 
+	listProviderAppointments := InitializeListProviderAppointmentsService()
+	listProviderAppointmentsController := controller.NewProviderAppointmentsController(listProviderAppointments)
+	listProviderAppointmentsController.InitRoutes(handler)
+
 	err := engine.Run(":" + cfg.Port)
 	if err != nil {
 		panic(err)

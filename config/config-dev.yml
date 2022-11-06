@@ -3,22 +3,23 @@ app:
   version: 1.0.0
 
 http:
-  port: 8282
+  port: ${HTTP_PORT}
 
 logger:
-  log_level: info
+  log_level: ${LOG_LEVEL}
 
 cache:
-  url: 127.0.0.1:6380
-  db: 4
+  url: ${REDIS_URL}
+  port: ${REDIS_PORT}
+  db: ${REDIS_DB}
   password:
 
 application:
   app_web_url: http://localhost:8080/gobarber-golang
 
 postgres:
-  host: localhost
-  port: 5432
+  host: ${HOST_DB}
+  port: ${PORT_DB}
   username: ${USERNAME_DB}
   password: ${PASSWORD_DB}
   dbname: gobarber
@@ -27,8 +28,11 @@ postgres:
   MaxOpenConns: 100
 
 mongodb:
-  host: localhost
-  port: 27017
+  host: ${HOST_MONGODB}
+  port: ${PORT_MONGODB}
+  dbname: ${DATABASE_MONGODB}
+  username: ${USERNAME_MONGODB}
+  password: ${PASSWORD_MONGODB}
 
 security:
   jwt:

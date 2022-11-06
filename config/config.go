@@ -16,9 +16,10 @@ type (
 	}
 
 	Cache struct {
-		RedisUrl      string `yaml:"url"`
-		RedisDb       int    `yaml:"db"`
-		RedisPassword string `yaml:"password"`
+		RedisUrl      string `env-required:"true" yaml:"url" env:"REDIS_URL"`
+		RedisDb       int    `env-required:"true" env:"REDIS_DB"`
+		RedisPort     int    `env-required:"true" env:"REDIS_PORT"`
+		RedisPassword string `yaml:"password" `
 	}
 
 	App struct {
@@ -39,19 +40,22 @@ type (
 	}
 
 	Postgres struct {
-		Host         string `env-required:"true" yaml:"host"`
-		PostgresPort int    `env-required:"true" yaml:"port"`
+		Host         string `env-required:"true" yaml:"host" env:"HOST_DB"`
+		PostgresPort int    `env-required:"true" env:"PORT_DB"`
 		Username     string `env-required:"true" yaml:"username" env:"USERNAME_DB"`
 		Password     string `env-required:"true" yaml:"password" env:"PASSWORD_DB"`
-		Dbname       string `env-required:"true" yaml:"dbname"`
-		Schema       string `env-required:"true" yaml:"schema"`
-		MaxIdleConns int    `env-required:"true" yaml:"maxIdleConns"`
-		MaxOpenConns int    `env-required:"true" yaml:"MaxOpenConns"`
+		Dbname       string `yaml:"dbname"`
+		Schema       string `yaml:"schema"`
+		MaxIdleConns int    `yaml:"maxIdleConns"`
+		MaxOpenConns int    `yaml:"MaxOpenConns"`
 	}
 
 	MongoDb struct {
-		MongoDbHost string `env-required:"true" yaml:"host"`
-		MongoDbPort int    `env-required:"true" yaml:"port"`
+		MongoDbDatabase string `env-required:"true" yaml:"database" env:"DATABASE_MONGODB"`
+		MongoDbHost     string `env-required:"true" yaml:"host" env:"HOST_MONGODB"`
+		MongoDbPort     int    `env-required:"true" env:"PORT_MONGODB"`
+		MongoDbUsername string `yaml:"username" env:"USERNAME_MONGODB"`
+		MongoDbPassword string `yaml:"password" env:"PASSWORD_MONGODB"`
 	}
 
 	Security struct {

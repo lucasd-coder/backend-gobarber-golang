@@ -1,9 +1,10 @@
 //go:build wireinject
-// +build wireinject
+//+build wireinject
 
 package app
 
 import (
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/storage"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/database"
@@ -31,7 +32,7 @@ func InitializeAppointmentRepository() *repository.AppointmentsRepository {
 }
 
 func InitializeNotificationsRepository() *repository.NotificationsRepository {
-	wire.Build(mongodb.GetClientMongoDB, repository.NewNotificationsRepository)
+	wire.Build(config.GetConfig, mongodb.GetClientMongoDB, repository.NewNotificationsRepository)
 	return &repository.NotificationsRepository{}
 }
 
@@ -93,4 +94,19 @@ func InitializeCacheProvider() *storage.CacheProvider {
 func InitializeRenderForgotPasswordTemplate() *template.RenderForgotPasswordTemplate {
 	wire.Build(template.NewRenderForgotPasswordTemplate)
 	return &template.RenderForgotPasswordTemplate{}
+}
+
+func InitializeListProviderAppointmentsService() *service.ListProviderAppointmentsService {
+	wire.Build(InitializeAppointmentRepository, InitializeCacheProvider, service.NewListProviderAppointmentsService)
+	return &service.ListProviderAppointmentsService{}
+}
+
+func InitializeListProviderDayAvailabilityService() *service.ListProviderDayAvailabilityService {
+	wire.Build(InitializeAppointmentRepository, service.NewListProviderDayAvailabilityService)
+	return &service.ListProviderDayAvailabilityService{}
+}
+
+func InitializeListProviderMonthAvailabilityService() *service.ListProviderMonthAvailabilityService {
+	wire.Build(InitializeAppointmentRepository, service.NewListProviderMonthAvailabilityService)
+	return &service.ListProviderMonthAvailabilityService{}
 }

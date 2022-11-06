@@ -12,14 +12,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProviderDayAvailabilityService_InvalidID(t *testing.T) {
+func TestProviderMonthAvailabilityService_InvalidID(t *testing.T) {
 	mockAppointmentRepository := new(test.MockAppointmentsRepository)
 
 	var providerId string = " "
 
-	dto := dtos.FindAllInDayFromProviderDTO{ProviderID: providerId, Day: 11, Month: 3, Year: 2025}
+	dto := dtos.FindAllInMonthFromProviderDTO{ProviderID: providerId, Month: 3, Year: 2025}
 
-	testService := service.ListProviderDayAvailabilityService{mockAppointmentRepository}
+	testService := service.ListProviderMonthAvailabilityService{mockAppointmentRepository}
 
 	_, err := testService.Execute(&dto)
 
@@ -27,7 +27,7 @@ func TestProviderDayAvailabilityService_InvalidID(t *testing.T) {
 	assert.Equal(t, "provider_id invalid.", err.Error())
 }
 
-func TestProviderDayAvailabilityService_FindAllInDayFromProviderListAppointments(t *testing.T) {
+func TestProviderMonthAvailabilityService_FindAllInMonthFromProviderListAppointments(t *testing.T) {
 	mockAppointmentRepository := new(test.MockAppointmentsRepository)
 
 	var userId string = uuid.NewString()
@@ -49,11 +49,11 @@ func TestProviderDayAvailabilityService_FindAllInDayFromProviderListAppointments
 		},
 	}
 
-	dto := dtos.FindAllInDayFromProviderDTO{ProviderID: providerId, Day: 11, Month: 3, Year: 2025}
+	dto := dtos.FindAllInMonthFromProviderDTO{ProviderID: providerId, Month: 3, Year: 2025}
 
-	mockAppointmentRepository.On("FindAllInDayFromProvider", &dto).Return(appointments)
+	mockAppointmentRepository.On("FindAllInMonthFromProvider", &dto).Return(appointments)
 
-	testService := service.ListProviderDayAvailabilityService{mockAppointmentRepository}
+	testService := service.ListProviderMonthAvailabilityService{mockAppointmentRepository}
 
 	resp, err := testService.Execute(&dto)
 

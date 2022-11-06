@@ -34,7 +34,11 @@ type (
 	}
 
 	ListProviderDayAvailabilityService interface {
-		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]*dtos.ResponseProviderDTO, error)
+		Execute(dto *dtos.FindAllInDayFromProviderDTO) ([]*dtos.ResponseAllInDayFromProviderDTO, error)
+	}
+
+	ListProviderMonthAvailabilityService interface {
+		Execute(dto *dtos.FindAllInMonthFromProviderDTO) ([]*dtos.ResponseAllInMonthFromProviderDTO, error)
 	}
 
 	JWTService interface {

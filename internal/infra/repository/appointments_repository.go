@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
@@ -35,9 +36,36 @@ func (db *AppointmentsRepository) FindByDate(date *time.Time, providerId string)
 }
 
 func (db *AppointmentsRepository) FindAllInMonthFromProvider(data *dtos.FindAllInMonthFromProviderDTO) []*model.Appointment {
-	return nil
+	var appointments []*model.Appointment
+	parsedMonth, err := fmt.Printf("'%02d'", data.Month)
+	if err != nil {
+		logger.Log.Error(err.Error())
+		return []*model.Appointment{}
+	}
+
+	dateFieldName := time.Date(data.Year, time.Month(parsedMonth), 0, 0, 0, 0, 0, time.UTC)
+	date := dateFieldName.Format("2006-01-02")
+
+	db.Connection.Model(model.Appointment{}).Where("provider_id = ? AND date LIKE ?", data.ProviderID, "%"+date+"%").Find(&appointments)
+	return appointments
 }
 
 func (db *AppointmentsRepository) FindAllInDayFromProvider(data *dtos.FindAllInDayFromProviderDTO) []*model.Appointment {
-	return nil
+	var appointments []*model.Appointment
+	parsedMonth, err := fmt.Printf("'%02d'", data.Month)
+	if err != nil {
+		logger.Log.Error(err.Error())
+		return []*model.Appointment{}
+	}
+	parsedDay, err := fmt.Printf("'%02d'", data.Day)
+	if err != nil {
+		logger.Log.Error(err.Error())
+		return []*model.Appointment{}
+	}
+
+	dateFieldName := time.Date(data.Year, time.Month(parsedMonth), parsedDay, 0, 0, 0, 0, time.UTC)
+	date := dateFieldName.Format("2006-01-02")
+
+	db.Connection.Model(model.Appointment{}).Where("provider_id = ? AND date LIKE ?", data.ProviderID, "%"+date+"%").Find(&appointments)
+	return appointments
 }

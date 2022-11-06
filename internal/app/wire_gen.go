@@ -7,6 +7,7 @@
 package app
 
 import (
+	"github.com/lucasd-coder/backend-gobarber-golang/config"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/repository"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/infra/storage"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/pkg/database"
@@ -37,8 +38,9 @@ func InitializeAppointmentRepository() *repository.AppointmentsRepository {
 }
 
 func InitializeNotificationsRepository() *repository.NotificationsRepository {
+	configConfig := config.GetConfig()
 	client := mongodb.GetClientMongoDB()
-	notificationsRepository := repository.NewNotificationsRepository(client)
+	notificationsRepository := repository.NewNotificationsRepository(configConfig, client)
 	return notificationsRepository
 }
 
@@ -115,4 +117,23 @@ func InitializeCacheProvider() *storage.CacheProvider {
 func InitializeRenderForgotPasswordTemplate() *template.RenderForgotPasswordTemplate {
 	renderForgotPasswordTemplate := template.NewRenderForgotPasswordTemplate()
 	return renderForgotPasswordTemplate
+}
+
+func InitializeListProviderAppointmentsService() *service.ListProviderAppointmentsService {
+	appointmentsRepository := InitializeAppointmentRepository()
+	cacheProvider := InitializeCacheProvider()
+	listProviderAppointmentsService := service.NewListProviderAppointmentsService(appointmentsRepository, cacheProvider)
+	return listProviderAppointmentsService
+}
+
+func InitializeListProviderDayAvailabilityService() *service.ListProviderDayAvailabilityService {
+	appointmentsRepository := InitializeAppointmentRepository()
+	listProviderDayAvailabilityService := service.NewListProviderDayAvailabilityService(appointmentsRepository)
+	return listProviderDayAvailabilityService
+}
+
+func InitializeListProviderMonthAvailabilityService() *service.ListProviderMonthAvailabilityService {
+	appointmentsRepository := InitializeAppointmentRepository()
+	listProviderMonthAvailabilityService := service.NewListProviderMonthAvailabilityService(appointmentsRepository)
+	return listProviderMonthAvailabilityService
 }

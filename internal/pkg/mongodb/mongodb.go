@@ -21,7 +21,11 @@ func SetUpMongoDB(cfg *config.Config) {
 
 	defer cancel()
 
-	mongoClient, err := mongo.Connect(ctx, options.Client().ApplyURI(url))
+	mongoClient, err := mongo.Connect(ctx, options.Client().SetAuth(options.Credential{
+		AuthMechanism: "SCRAM-SHA-256",
+		Username: cfg.MongoDbUsername,
+		Password: cfg.MongoDbPassword,
+	}).ApplyURI(url))
 	if err != nil {
 		logger.Log.Fatal(err.Error())
 	}
