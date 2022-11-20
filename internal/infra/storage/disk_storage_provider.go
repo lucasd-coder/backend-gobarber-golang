@@ -13,10 +13,12 @@ import (
 	"github.com/google/uuid"
 )
 
-type DiskStorageProvider struct{}
+type DiskStorageProvider struct {
+	Create func(name string) (*os.File, error)
+}
 
 func NewDiskStorageProvider() *DiskStorageProvider {
-	return &DiskStorageProvider{}
+	return &DiskStorageProvider{Create: os.Create}
 }
 
 func (disk *DiskStorageProvider) SaveFile(file *multipart.FileHeader) string {
@@ -31,7 +33,7 @@ func (disk *DiskStorageProvider) SaveFile(file *multipart.FileHeader) string {
 
 	filename := fmt.Sprintf("%s-%s", uuid.NewString(), file.Filename)
 
-	out, err := os.Create(filepath.Join("tmp/", filepath.Base(filename)))
+	out, err := disk.Create(filepath.Join("tmp/", filepath.Base(filename)))
 	if err != nil {
 		logger.Log.Error(err.Error())
 	}

@@ -181,5 +181,46 @@ func setEnvValues() error {
 		return fmt.Errorf("Error setting APP_WEB_URL, err = %v", err)
 	}
 
+	err = os.Setenv("HOST_DB", "http://localhost:8080")
+	if err != nil {
+		return fmt.Errorf("Error setting HOST_DB, err = %v", err)
+	}
+
+	err = os.Setenv("HOST_MONGODB", "http://localhost:8080")
+	if err != nil {
+		return fmt.Errorf("Error setting HOST_MONGODB, err = %v", err)
+	}
+
+	err = os.Setenv("DATABASE_MONGODB", "http://localhost:8080")
+	if err != nil {
+		return fmt.Errorf("Error setting DATABASE_MONGODB, err = %v", err)
+	}
+
+	err = os.Setenv("PORT_MONGODB", "8080")
+	if err != nil {
+		return fmt.Errorf("Error setting PORT_MONGODB, err = %v", err)
+	}
+
+	err = os.Setenv("PORT_DB", "8080")
+	if err != nil {
+	
+		return fmt.Errorf("Error setting PORT_DB, err = %v", err)
+	}
+
+	err = os.Setenv("PORT_MONGODB", "8080")
+	if err != nil {
+		return fmt.Errorf("Error setting PORT_MONGODB, err = %v", err)
+	}
+
+	err = os.Setenv("REDIS_DB", "3")
+	if err != nil {
+		return fmt.Errorf("Error setting REDIS_DB, err = %v", err)
+	}
+
+	err = os.Setenv("REDIS_PORT", "8080")
+	if err != nil {
+		return fmt.Errorf("Error setting REDIS_PORT, err = %v", err)
+	}
+
 	return nil
 }

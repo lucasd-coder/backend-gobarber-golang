@@ -30,7 +30,7 @@ func Run(cfg *config.Config) {
 	// Close Database
 	defer database.CloseConn()
 
-	// Clode MongoDB
+	// Close MongoDB
 	defer mongodb.CloseConnMongoDB()
 
 	// Http server

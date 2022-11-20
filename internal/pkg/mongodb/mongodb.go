@@ -32,7 +32,7 @@ func SetUpMongoDB(cfg *config.Config) {
 
 	err = mongoClient.Ping(ctx, nil)
 	if err != nil {
-		logger.Log.Fatalf("Error MongoDB connection: ", err.Error())
+		logger.Log.Fatalf("Error MongoDB connection: %v", err.Error())
 	} else {
 		logger.Log.Infoln("MongoDB Connected ")
 	}
