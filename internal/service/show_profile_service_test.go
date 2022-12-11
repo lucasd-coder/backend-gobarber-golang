@@ -3,9 +3,9 @@ package service_test
 import (
 	"testing"
 
+	test "github.com/lucasd-coder/backend-gobarber-golang/internal/mock"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
-	"github.com/lucasd-coder/backend-gobarber-golang/internal/test"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

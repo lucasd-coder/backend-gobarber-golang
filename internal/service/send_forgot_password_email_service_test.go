@@ -9,19 +9,17 @@ import (
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/lucasd-coder/backend-gobarber-golang/config"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	test "github.com/lucasd-coder/backend-gobarber-golang/internal/mock"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/model/external"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
-	"github.com/lucasd-coder/backend-gobarber-golang/internal/test"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
 
-var (
-	env_value = "SendForgot"
-)
+var env_value = "SendForgot"
 
 func TestSendForgotPasswordEmailService_UserNotFound(t *testing.T) {
 	mockRepo := new(test.MockUserRepository)
@@ -48,7 +46,6 @@ func TestSendForgotPasswordEmailService_UserNotFound(t *testing.T) {
 }
 
 func TestSuccessfullySendForgotPassword(t *testing.T) {
-
 	mockRepo := new(test.MockUserRepository)
 	mockRepoToken := new(test.MockUserTokenRepository)
 	mockEtherealMailProvi := new(test.MockEtherealMailProvider)
@@ -60,20 +57,20 @@ func TestSuccessfullySendForgotPassword(t *testing.T) {
 	userToken := model.NewUserToken(user.ID.String())
 
 	userTokenReturn := model.UserToken{
-		ID:  uuid.New(),
-		Token: uuid.New(),
-		UserID: user.ID.String(),
-		User: user,
+		ID:        uuid.New(),
+		Token:     uuid.New(),
+		UserID:    user.ID.String(),
+		User:      user,
 		CreatedAt: time.Now(),
 	}
 
-	cfg := SetUpConfig()	
+	cfg := SetUpConfig()
 	cfg.AppWebUrl = "http://localhost:8080"
 	config.ExportConfig(cfg)
 
 	sendMail := &dtos.SendMailDTO{
-		From: "Equipe GoBarber",
-		To: []string{"teste@gmail.com"},
+		From:    "Equipe GoBarber",
+		To:      []string{"teste@gmail.com"},
 		Message: []byte("Hello world"),
 	}
 
@@ -203,7 +200,6 @@ func setEnvValues() error {
 
 	err = os.Setenv("PORT_DB", "8080")
 	if err != nil {
-	
 		return fmt.Errorf("Error setting PORT_DB, err = %v", err)
 	}
 

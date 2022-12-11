@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/dtos"
+	test "github.com/lucasd-coder/backend-gobarber-golang/internal/mock"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/model"
 	"github.com/lucasd-coder/backend-gobarber-golang/internal/service"
-	"github.com/lucasd-coder/backend-gobarber-golang/internal/test"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
