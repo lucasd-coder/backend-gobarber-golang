@@ -8,21 +8,19 @@ jobs:
           os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ matrix.go-version }}
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Test
-        uses: go mod tidy && go test ./... -coverprofile=coverage.out
-    
-      - name: Upload coverage report
-        uses: actions/checkout@master
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.out
-          flags: unittests
-          name: codecov-umbrella
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: Test
+      uses: go mod tidy && go test ./... -coverprofile=coverage.out
+
+    - name: Upload coverage report
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.out
+        flags: unittests
+        name: codecov-umbrella
