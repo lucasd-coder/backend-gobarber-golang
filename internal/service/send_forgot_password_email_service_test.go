@@ -193,6 +193,11 @@ func setEnvValues() error {
 		return fmt.Errorf("Error setting DATABASE_MONGODB, err = %v", err)
 	}
 
+	err = os.Setenv("REDIS_URL", "http://localhost:6380")
+	if err != nil {
+		return fmt.Errorf("Error setting REDIS_URL, err = %v", err)
+	}
+
 	err = os.Setenv("PORT_MONGODB", "8080")
 	if err != nil {
 		return fmt.Errorf("Error setting PORT_MONGODB, err = %v", err)
