@@ -1,5 +1,5 @@
-on: [push, pull_request]
 name: Run Test Suite
+on: [push, pull_request]
 jobs:
   test:
     strategy:
@@ -13,12 +13,12 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
-      uses: actions/checkout@master
+    - uses: actions/checkout@master
     - name: Test
       uses: go mod tidy && go test ./... -coverprofile=coverage.out
 
     - name: Upload coverage report
-      uses: codecov/codecov-action@v3
+    - uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage.out
