@@ -9,16 +9,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@master
     - name: Test
       run: go mod tidy && go test ./... -coverprofile=coverage.out
 
     - name: Upload coverage report
-      uses: codecov/codecov-action@v1.0.2
+      uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage.out
