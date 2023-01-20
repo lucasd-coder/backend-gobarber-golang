@@ -54,7 +54,13 @@ func TestAuthenticateUserService_AuthenticateSuccessfully(t *testing.T) {
 	jwtService := service.JWTService{}
 
 	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
-	user := model.User{ID: id, Name: "lucas", Email: "lucas@gmail.com", Password: "$2a$08$7xWE3NGEXhnKHYi7wcFUw.wMDtisIPK4T78lmjnSOsYEO.6gTuy1W"}
+
+	user := model.User{
+		ID:       id,
+		Name:     "lucas",
+		Email:    "lucas@gmail.com",
+		Password: "$2a$08$7xWE3NGEXhnKHYi7wcFUw.wMDtisIPK4T78lmjnSOsYEO.6gTuy1W",
+	}
 
 	mockRepo.On("FindByEmail", user.Email).Return(&user)
 

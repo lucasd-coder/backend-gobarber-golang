@@ -27,7 +27,7 @@ func TestSendForgotPasswordEmailService_UserNotFound(t *testing.T) {
 	mockEtherealMailProvi := new(test.MockEtherealMailProvider)
 	mockRenderForgotTemp := new(test.MockRenderForgotPasswordTemplate)
 
-	var id uuid.UUID = uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
+	id := uuid.MustParse("0399e631-e2f0-4df5-b1d0-ca6d567a318c")
 	user := model.User{ID: id, Name: "lucas", Email: "lucas@gmail.com", Password: "123456"}
 
 	mockRepo.On("FindByEmail", user.Email).Return(&model.User{})
